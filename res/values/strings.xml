@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AccessibilityEventCapture</string>
+    <string name="test_service_on">Test Service is on</string>
+    <string name="test_service_off">Test Service is off</string>
+    <string name="setting">Setting</string>
+
+</resources>
