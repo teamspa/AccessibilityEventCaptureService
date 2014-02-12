@@ -19,11 +19,11 @@ public abstract class AccessibilityEventCaptureService extends AccessibilityServ
 	public static final int EXTRA_TYPE_NOTIFICATION = 0x19;
 	public static final int EXTRA_TYPE_OTHERS = EXTRA_TYPE_NOTIFICATION + 1;
 
-	public static final String TAG = AccessibilityEventCaptureService.class.getSimpleName();
+	public static String TAG = AccessibilityEventCaptureService.class.getSimpleName();
 
 	@Override
 	public void onAccessibilityEvent(AccessibilityEvent event) {
-		if (isDebuggMode()) {
+		if (isDebugMode()) {
 			Log.d(TAG, "onAccessibilityEvent");
 		}
 
@@ -50,17 +50,21 @@ public abstract class AccessibilityEventCaptureService extends AccessibilityServ
 			sendingIntent.putExtra(EXTRA_MESSAGE, message);
 			getApplicationContext().sendBroadcast(sendingIntent);
 
-			if (isDebuggMode()) {
+			if (isDebugMode()) {
 				Log.d(TAG, sourcePackageName + " : " + message);
 			}
 		}
 	}
 
-	abstract boolean isDebuggMode();
+	protected abstract boolean isDebugMode();
+
+	protected void setTag(String tag) {
+		AccessibilityEventCaptureService.TAG = tag;
+	}
 
 	@Override
 	protected void onServiceConnected() {
-		if (isDebuggMode()) {
+		if (isDebugMode()) {
 			Log.d(TAG, "onServiceConnected");
 			android.os.Debug.waitForDebugger();
 		}
