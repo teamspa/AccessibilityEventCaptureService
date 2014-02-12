@@ -26,12 +26,12 @@ public class AccessibilityServiceUtil {
 		return allAccessibilityServices;
 	}
 
-	public static boolean isAccessibilityServiceOn(Context context, Class<?> clazz) {
+	public static boolean isAccessibilityServiceOn(Context context, String packageName, String className) {
 		ArrayList<String> allAccessibilityServices = getAllAccessibilityServices(context);
 		StringBuffer concat = new StringBuffer();
-		concat.append(clazz.getPackage().getName());
+		concat.append(packageName);
 		concat.append('/');
-		concat.append(clazz.getName());
+		concat.append(className);
 
 		return allAccessibilityServices.contains(concat.toString());
 	}
